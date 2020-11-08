@@ -31,7 +31,6 @@ export default class Timer extends Component {
     }
 
 
-
     render() {
         const elapsedString = this.renderElapsedString(this.props.elapsed);
         return (
@@ -56,9 +55,9 @@ export default class Timer extends Component {
                             <i className='trash icon'/>
                         </span>
                     </div>
-                    <div className='ui bottom attached blue basic button'>
-                        Start
-                    </div>
+                </div>
+                <div className='ui bottom attached blue basic button'>
+                    Start
                 </div>
             </div>
         )
