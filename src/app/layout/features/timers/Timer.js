@@ -48,8 +48,8 @@ export default class Timer extends Component {
                         </h2>
                     </div>
                     <div className='extra content'>
-                        <span className='right floated edit icon'>
-                            <i className='edit icon'/>
+                        <span className='right floated edit icon' onClick={this.props.onEditFormOpen}>
+                            <i className='edit icon' />
                         </span>
                         <span className='right floated trash icon'>
                             <i className='trash icon'/>

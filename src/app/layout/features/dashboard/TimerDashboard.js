@@ -23,6 +23,40 @@ export default class TimerDashboard extends Component {
             }
         ]
     };
+
+    handleEditFormSubmit = (attrs) => {
+        this.setState({
+            timers: this.state.timers.map((timer) => {
+                if(timer.id === attrs.id) {
+                    return Object.assign({}, timer, {
+                        title: attrs.title,
+                        project: attrs.project
+                    });
+                }
+                else
+                {
+                    return timer;
+                }
+            }),
+        });
+    }
+
+    handleCreateFormSubmit = (timer) => {
+        const t = this.createTimer(timer);
+        this.setState({timers: this.state.timers.concat(t)});
+    }
+
+    createTimer = (timer) => {
+        const t = {
+            title: timer.title || 'Timer',
+            project: timer.project || 'Project',
+            id: uuidv4(),
+            elapsed: 0,
+        }
+        return t;
+    }
+    
+
     render() {
 
         return (
@@ -30,8 +64,8 @@ export default class TimerDashboard extends Component {
                 <Header/>
                 <div className='ui three column centered grid'>
                     <div className='column'>
-                        <EditableTimerList timers={this.state.timers}/>
-                        <ToggleableTimerForm/>
+                        <EditableTimerList onFormSubmit={this.handleEditFormSubmit} timers={this.state.timers}/>
+                        <ToggleableTimerForm onFormSubmit={this.handleCreateFormSubmit} />
                     </div>
                 </div>
             </React.Fragment>
